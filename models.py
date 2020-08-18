@@ -28,7 +28,7 @@ class Encoder(nn.Module):
         self.resnet = nn.Sequential(*modules)
 
         # Resize image to fixed size to allow input images of variable size
-        # Given the source and target size, kernel size adapts itself and does the Avg Pooling
+        # Given the target size, kernel size adapts itself and does the Avg Pooling
         self.adaptive_pool = nn.AdaptiveAvgPool2d((encoded_image_size, encoded_image_size))
 
         self.fine_tune()
