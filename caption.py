@@ -189,19 +189,8 @@ def visualize_att(image_path, seq, alphas, rev_word_map, smooth=True):
             plt.imshow(alpha, alpha=0)
         else:
             plt.imshow(alpha, alpha=0.8)
-        alpha = alpha - np.mean(alpha)
-
-        im = np.asarray(image, np.float32)/255
-        for x in range(im.shape[0]):
-            for y in range(im.shape[1]):
-                h,l,s = colorsys.rgb_to_hls(*im[x,y])
-                if max(l,100*alpha[x,y]) == l:
-                    im[x,y] = colorsys.hls_to_rgb(h,min(0.3, l),s)
-                else:
-                    im[x,y] = colorsys.hls_to_rgb(h,min(0.7, 100*alpha[x,y]),s)
 
         plt.set_cmap(cm.Greys_r)
-        plt.imsave('./results/'+str(t)+'.jpg', im)
         plt.axis('off')
     
     plt.show()
